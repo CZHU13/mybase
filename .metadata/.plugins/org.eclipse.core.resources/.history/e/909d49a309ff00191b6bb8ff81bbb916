@@ -1,0 +1,9 @@
+package cn.red.util;
+
+public class Sort {
+	private int sid;
+	private String sname;
+	private double sprice;
+	private String sdesc;
+	
+}

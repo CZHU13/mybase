@@ -1,0 +1,92 @@
+package cn.red.util;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
+/*
+ * 加载properties文件
+ * IO读取文件
+ */
+public class DBUtils2 {
+	private static Connection conn;
+	private static String url; 
+	private static String username; 
+	private static String password; 
+	private static String driver; 
+	
+	/*
+	 * 工具类
+	 */
+	private DBUtils2() {
+		
+	}
+	
+	static {
+		try {
+			readConfig();
+
+			Class.forName(driver);
+			conn = DriverManager.getConnection(url, username, password);
+		} catch (Exception e) {
+			throw new RuntimeException("数据库连接失败");
+		}
+	}
+	
+	
+	private static void readConfig() throws IOException {
+		//使用类的加载器DBUtils2.class.getClassLoader()
+		//方法getResourceAsStream("")与getResource("")均常被用于获取编译路径下指定的配置文件
+		InputStream in = DBUtils2.class.getClassLoader().getResourceAsStream("db.properties");
+		Properties prop = new Properties();
+		prop.load(in);
+		
+		driver = prop.getProperty("driver");
+		url = prop.getProperty("url");
+		username = prop.getProperty("username");
+		password = prop.getProperty("password");
+	}
+	/**
+	 * 获取连接对象
+	 * @return
+	 */
+	public static Connection getConnection() {
+		return conn;
+	}
+	
+	/**
+	 * 关闭连接对象
+	 * @param conn
+	 * @param state
+	 * @param rs
+	 */
+	public static void close(Connection conn,Statement state,ResultSet rs) {
+		if(conn!=null) {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(state!=null) {
+			try {
+				state.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(rs!=null) {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}

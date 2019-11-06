@@ -1,0 +1,14 @@
+package cn.red.util;
+
+public class DBUtils {
+	private static Connection conn;
+	
+	/*
+	 * π§æﬂ¿‡
+	 */
+	private DBUtils() {
+		
+	}
+	
+	
+}

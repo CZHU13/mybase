@@ -1,0 +1,8 @@
+package cn.red.util;
+
+public class TestDBUtils {
+	@Test
+	public void testConn() {
+		
+	}
+}

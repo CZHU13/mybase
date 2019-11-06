@@ -1,0 +1,40 @@
+package cn.red.jdbc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+
+public class DefendSQLInjection {
+	public static void main(String[] args) throws SQLException, ClassNotFoundException {
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+	
+		String url = "jdbc:mysql://localhost:3306/mybase?serverTimezone=UTC";
+		String username = "root";
+		String password = "199307";
+		Connection conn = DriverManager.getConnection(url, username, password);
+		System.out.println(conn);
+		
+		Statement state = conn.createStatement();
+		
+		//Sql注入
+		Scanner scan = new Scanner(System.in);
+		String user = scan.nextLine();// a
+		String pass = scan.nextLine();// 1' or '1' = '1
+		String selectSql = "select * from users where username = '"
+				+user +"' and PASSWORD = '" +pass +"'";
+		System.out.println(selectSql);
+		ResultSet rs = state.executeQuery(selectSql);
+		while(rs.next()) {
+			System.out.println(rs.getString("username")+" "+rs.getString("password"));
+		}
+		
+		//6.释放资源
+		state.close();
+		conn.close();
+	}
+}

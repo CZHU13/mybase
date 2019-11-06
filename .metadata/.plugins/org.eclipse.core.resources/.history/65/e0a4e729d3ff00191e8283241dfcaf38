@@ -1,0 +1,9 @@
+package cn.red.demo1;
+
+import cn.red.util.JDBCUtilsConfig;
+
+public class Test {
+	public static void main(String[] args) {
+		System.out.println(JDBCUtilsConfig.getConnection());
+	}
+}

@@ -1,0 +1,11 @@
+package cn.red.demo1;
+/*
+ *  使用QueryRunner类,实现对数据表的
+ *  insert delete update
+ *  调用QueryRunner类的方法 update (Connection con,String sql,Object...param)
+ *  Object...param 可变参数,Object类型,SQL语句会出现?占位符
+ *  数据库连接对象,自定义的工具类传递
+ */
+public class QueryRunnerDemo {
+
+}

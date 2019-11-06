@@ -1,0 +1,26 @@
+CREATE TABLE sort
+(sid INT PRIMARY KEY AUTO_INCREMENT,
+sname VARCHAR(100),
+sprice DOUBLE,
+sdesc VARCHAR(4000)
+);
+
+INSERT INTO sort(sname,sprice,sdesc) VALUES ('家电',2000,'优惠大促销');
+INSERT INTO sort(sname,sprice,sdesc) VALUES ('家具',5000,'家具价格上调，原材料涨价');
+INSERT INTO sort(sname,sprice,sdesc) VALUES ('儿童玩具',300,'超级好玩');
+INSERT INTO sort(sname,sprice,sdesc) VALUES ('生鲜',55,'美味海鲜');
+INSERT INTO sort(sname,sprice,sdesc) VALUES ('洗衣液',10,'洗发液促销');
+INSERT INTO sort(sname,sprice,sdesc) VALUES ('服装',99,'服装促销');
+
+
+CREATE TABLE USERS(
+ID INT PRIMARY KEY AUTO_INCREMENT,
+USERNAME VARCHAR(100),
+PASSWORD VARCHAR(100));
+
+INSERT INTO USERS (USERNAME,PASSWORD)VALUES('REDSMART','123456');
+INSERT INTO USERS (USERNAME,PASSWORD)VALUES('JOHN','654321');
+
+SELECT * FROM USERS
+WHERE USERNAME = 'REDSMART'
+AND PASSWORD = '1' OR 1=1;

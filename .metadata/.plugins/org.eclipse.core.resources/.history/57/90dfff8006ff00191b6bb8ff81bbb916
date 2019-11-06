@@ -1,0 +1,16 @@
+package cn.red.util;
+
+import java.sql.Connection;
+
+public class DBUtils {
+	private static Connection conn;
+	
+	/*
+	 * π§æﬂ¿‡
+	 */
+	private DBUtils() {
+		
+	}
+	
+	
+}
